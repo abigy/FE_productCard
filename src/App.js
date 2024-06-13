@@ -7,6 +7,7 @@ import SiderBar from './Component/Layouts/DefaultLayouts/Sidebar/SiderBar';
 import { useState } from 'react';
 import products from './Component/Layouts/DefaultLayouts/Content/Data/dataProduct';
 import ViewCard from './Component/Layouts/DefaultLayouts/Content/ViewCard';
+import ViewDetails from './Component/Layouts/DefaultLayouts/Product/ViewDetails/ViewDetails';
 // import { Card } from 'antd';
 
 
@@ -64,8 +65,8 @@ function App() {
         feature={feature}
       />
     )
-  )
-}
+    )
+  }
 
   const result = filteredData(products, selectedCategory, query)
 
@@ -74,7 +75,8 @@ function App() {
       <Header query={query} handleInputChange={handleInputChange}></Header>
       <SiderBar handleChange={handleChange}></SiderBar>
       <Recommend handleClick={handleClick} ></Recommend>
-      <Product result={result}/>
+      {/* <ViewDetails></ViewDetails> */}
+      <Product result={result} />
     </div>
   );
 }

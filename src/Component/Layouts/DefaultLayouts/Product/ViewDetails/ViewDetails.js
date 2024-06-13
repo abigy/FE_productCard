@@ -1,9 +1,8 @@
-import { useState } from "react";
-import ViewDetails from "../Product/ViewDetails/ViewDetails";
-import toggleModal from "../Product/ViewDetails/ViewDetails"
+import React, { useState } from 'react'
 import { IoCloseCircle } from "react-icons/io5";
+import './ViewDetail.scss'
 
-function ViewCard({ img, price, category, feature, salePrice, description, title }) {
+function ViewDetails() {
   const [modal, setModal] = useState(false)
   const toggleModal = () => {
     console.log("Bam cc  gi v ???")
@@ -36,32 +35,9 @@ function ViewCard({ img, price, category, feature, salePrice, description, title
           </div>
         </div>
       )}
-      {/* card-product */}
-      <section className="card">
-        <img className='card-img'
-          src={img}
-          alt={title} />
-        <div className="card-details">
-          <h3 className="card-title">{title}</h3>
-          <div className="card-price">
-            <div className="main-price">{price}</div>
-            <span className="card-sale">
-              <del className="price">{salePrice}</del>
-            </span>
-          </div>
-          <div className="card-description">
-            <span className="promotion">{description}</span>
-          </div>
-        </div>
-        <div className="Cart">
-          <button onClick={toggleModal} className="cart-btn button">
-            Xem chi tiết
-          </button>
-        </div>
-      </section>
-      {/* end-card-product */}
+
     </div>
   )
 }
 
-export default ViewCard;
+export default ViewDetails;

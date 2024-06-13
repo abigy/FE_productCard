@@ -8,8 +8,7 @@ function SiderBar({handleChange}) {
     <div>
       <section className='sidebar'>
         <h2 className="sidebar-main"></h2>
-
-        <Category handleChange = {handleChange}></Category>
+        {/* <Category handleChange = {handleChange}></Category> */}
         <Price handleChange = {handleChange}></Price>
         <Features handleChange = {handleChange}></Features>
       </section>
