@@ -4,19 +4,31 @@ import Header from './Component/Layouts/DefaultLayouts/Header/Header';
 import Product from './Component/Layouts/DefaultLayouts/Product/Product';
 import Recommend from './Component/Layouts/DefaultLayouts/Recommend/Recommend';
 import SiderBar from './Component/Layouts/DefaultLayouts/Sidebar/SiderBar';
-import { useState } from 'react';
-import products from './Component/Layouts/DefaultLayouts/Content/Data/dataProduct';
+import { useEffect, useState } from 'react';
+import products from './Component/Layouts/DefaultLayouts/Data/dataProduct';
+import dataProduct from './Component/Layouts/DefaultLayouts/Data/dataProduct'
 import ViewCard from './Component/Layouts/DefaultLayouts/Content/ViewCard';
-import ViewDetails from './Component/Layouts/DefaultLayouts/Product/ViewDetails/ViewDetails';
+import { Button } from 'antd';
+import ButtonRecommend from './Component/Layouts/DefaultLayouts/Content/ButtonRecommend';
 // import { Card } from 'antd';
 
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [query, setQuery] = useState("")
+  // const [productdb, setProductdb] = useState(dataProduct)
+
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     const result = await fetch('http://localhost:3000/data')
+  //     const jsonResult = await result.json()
+
+  //     setProductdb(jsonResult)
+  //   }
+  //   fetchProduct()
+  // }, [])
 
   //Input filter
-
   const handleInputChange = event => {
     setQuery(event.target.value)
   }
@@ -74,9 +86,10 @@ function App() {
     <div>
       <Header query={query} handleInputChange={handleInputChange}></Header>
       <SiderBar handleChange={handleChange}></SiderBar>
-      <Recommend handleClick={handleClick} ></Recommend>
-      {/* <ViewDetails></ViewDetails> */}
-      <Product result={result} />
+      <ButtonRecommend  ></ButtonRecommend>
+      <ViewCard></ViewCard>
+      {/* <Product result={result} /> */}
+      {/* <Product/> */}
     </div>
   );
 }

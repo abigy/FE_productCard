@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
-import Button from '../Content/ButtonRecommend';
-import './Recommend.scss';
+import { useEffect, useState } from "react"
 
-function Recommend() {
+function ButtonRecommend() {
   const [productdb, setProductdb] = useState([])
 
   const getData = () => {
@@ -21,18 +19,19 @@ function Recommend() {
   useEffect(() => {
     getData()
   }, [])
-
   return (
     <div>
       <h3 className='type-title'>Sản phẩm</h3>
       <div className="type-btn">
-        <Button
-          data_product={data_product}
-          filterItems={filterItems}
-          setProductdb={setProductdb}
-        />
+        <button className="btns" >All</button>
+        {data_product.map(val => (
+          <button
+            onClick={() => filterItems(val)}
+            className="btns" >{val}</button>
+        ))}
       </div>
     </div>
   )
 }
-export default Recommend;
+
+export default ButtonRecommend;
