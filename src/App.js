@@ -20,7 +20,7 @@ function App() {
   // get data
   const [productdb, setProductdb] = useState([])
   const [productdb2, setProductdb2] = useState([])
-  
+
 
   const getData = () => {
     fetch('http://localhost:8000/data')
@@ -50,7 +50,7 @@ function App() {
     getData2()
   }, [])
 
-  const data_product2 = [...new Set(productdb.map((val) => val.feature))]
+  const data_product2 = [...new Set(productdb2.map((val) => val.feature))]
   // const [productdb, setProductdb] = useState(dataProduct)
 
   // useEffect(() => {
@@ -64,62 +64,62 @@ function App() {
   // }, [])
 
   //Input filter
-  const handleInputChange = event => {
-    setQuery(event.target.value)
-  }
+  // const handleInputChange = event => {
+  //   setQuery(event.target.value)
+  // }
 
 
-  const filteredItems = products.filter(
-    (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
-  );
+  // const filteredItems = products.filter(
+  //   (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+  // );
 
-  // radio filter
-  const handleChange = event => {
-    setSelectedCategory(event.target.value)
-  }
+  // // radio filter
+  // const handleChange = event => {
+  //   setSelectedCategory(event.target.value)
+  // }
   // //Button filter
   // const handleClick = event => {
   //   setSelectedCategory(event.target.value)
   // }
   //Filtering input item
-  function filteredData(products, selected, query) {
-    let filteredProduct = products
+  // function filteredData(products, selected, query) {
+  //   let filteredProduct = products
 
-    if (query) {
-      filteredProduct = filteredItems
-    }
+  //   if (query) {
+  //     filteredProduct = filteredItems
+  //   }
 
-    // selected filter
-    if (selected) {
-      filteredProduct = filteredProduct.filter(({ category, price, feature,
-        salePrice, title }) =>
-        category === selected ||
-        price === selected ||
-        feature === selected ||
-        salePrice === selected ||
-        title === selected)
-    }
+  //   // selected filter
+  //   if (selected) {
+  //     filteredProduct = filteredProduct.filter(({ category, price, feature,
+  //       salePrice, title }) =>
+  //       category === selected ||
+  //       price === selected ||
+  //       feature === selected ||
+  //       salePrice === selected ||
+  //       title === selected)
+  //   }
 
-    return filteredProduct.map(({ img, price, category, feature, salePrice, description, title }) => (
-      <ViewCard
-        key={Math.random()}
-        img={img}
-        title={title}
-        price={price}
-        salePrice={salePrice}
-        category={category}
-        description={description}
-        feature={feature}
-      />
-    )
-    )
-  }
+  //   return filteredProduct.map(({ img, price, category, feature, salePrice, description, title }) => (
+  //     <ViewCard
+  //       key={Math.random()}
+  //       img={img}
+  //       title={title}
+  //       price={price}
+  //       salePrice={salePrice}
+  //       category={category}
+  //       description={description}
+  //       feature={feature}
+  //     />
+  //   )
+  //   )
+  // }
 
-  const result = filteredData(products, selectedCategory, query)
+  // const result = filteredData(products, selectedCategory, query)
 
   return (
     <div>
-      <Header query={query} handleInputChange={handleInputChange}></Header>
+      <Header></Header>
       <SiderBar data_product2={data_product2}></SiderBar>
       <ButtonRecommend
         data_product={data_product}
