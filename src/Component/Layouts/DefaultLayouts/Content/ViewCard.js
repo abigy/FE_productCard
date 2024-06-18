@@ -3,9 +3,9 @@ import ViewDetails from "../Product/ViewDetails/ViewDetails";
 import toggleModal from "../Product/ViewDetails/ViewDetails"
 import { IoCloseCircle } from "react-icons/io5";
 
-function ViewCard() {
+function ViewCard({productdb}) {
   const [modal, setModal] = useState(false)
-  const [productdb, setProductdb] = useState([])
+  // const [productdb, setProductdb] = useState([])
 
   const [detail, setDetail] = useState({
     id: '',
@@ -27,21 +27,20 @@ function ViewCard() {
     setModal(!modal)
   }
 
-  const getData = () => {
-    fetch('http://localhost:8000/data')
-      .then(response => response.json())
-      .then(res => setProductdb(res))
-  }
+  // const getData = () => {
+  //   fetch('http://localhost:8000/data')
+  //     .then(response => response.json())
+  //     .then(res => setProductdb(res))
+  // }
 
 
-  useEffect(() => {
-    getData()
-  }, [])
+  // useEffect(() => {
+  //   getData()
+  // }, [])
 
   return (
     <div className="cardContainer">
       {modal && (
-
         <div className="model_Container">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="details-container">

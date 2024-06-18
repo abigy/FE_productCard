@@ -1,29 +1,30 @@
 import { useEffect, useState } from "react"
+import dataJS from '../Data/dataProduct'
 
-function ButtonRecommend() {
-  const [productdb, setProductdb] = useState([])
+function ButtonRecommend({ data_product, filterItems, setProductdb }) {
+  // const [productdb, setProductdb] = useState([])
 
-  const getData = () => {
-    fetch('http://localhost:8000/data')
-      .then(response => response.json())
-      .then(res => setProductdb(res))
-  }
+  // const getData = () => {
+  //   fetch('http://localhost:8000/data')
+  //     .then(response => response.json())
+  //     .then(res => setProductdb(res))
+  // }
 
-  const data_product = [...new Set(productdb.map((val) => val.category))]
+  // const data_product = [...new Set(productdb.map((val) => val.category))]
 
-  const filterItems = (cat) => {
-    const newItems = productdb.filter((newVal) => newVal.category === cat)
-    setProductdb(newItems)
-  }
+  // const filterItems = (cat) => {
+  //   const newItems = productdb.filter((newVal) => newVal.category === cat)
+  //   setProductdb(newItems)
+  // }
 
-  useEffect(() => {
-    getData()
-  }, [])
+  // useEffect(() => {
+  //   getData()
+  // }, [])
   return (
     <div>
       <h3 className='type-title'>Sản phẩm</h3>
       <div className="type-btn">
-        <button className="btns" >All</button>
+        <button onClick={() => setProductdb(dataJS)} className="btns" >All</button>
         {data_product.map(val => (
           <button
             onClick={() => filterItems(val)}

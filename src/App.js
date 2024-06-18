@@ -16,6 +16,41 @@ import ButtonRecommend from './Component/Layouts/DefaultLayouts/Content/ButtonRe
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [query, setQuery] = useState("")
+
+  // get data
+  const [productdb, setProductdb] = useState([])
+  const [productdb2, setProductdb2] = useState([])
+  
+
+  const getData = () => {
+    fetch('http://localhost:8000/data')
+      .then(response => response.json())
+      .then(res => setProductdb(res))
+  }
+
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  const data_product = [...new Set(productdb.map((val) => val.category))]
+  const filterItems = (cat) => {
+    const newItems = productdb.filter((newVal) => newVal.category === cat)
+    setProductdb(newItems)
+  }
+
+
+  const getData2 = () => {
+    fetch('http://localhost:8000/data')
+      .then(response => response.json())
+      .then(res => setProductdb2(res))
+  }
+
+  useEffect(() => {
+    getData2()
+  }, [])
+
+  const data_product2 = [...new Set(productdb.map((val) => val.feature))]
   // const [productdb, setProductdb] = useState(dataProduct)
 
   // useEffect(() => {
@@ -42,10 +77,10 @@ function App() {
   const handleChange = event => {
     setSelectedCategory(event.target.value)
   }
-  //Button filter
-  const handleClick = event => {
-    setSelectedCategory(event.target.value)
-  }
+  // //Button filter
+  // const handleClick = event => {
+  //   setSelectedCategory(event.target.value)
+  // }
   //Filtering input item
   function filteredData(products, selected, query) {
     let filteredProduct = products
@@ -85,9 +120,13 @@ function App() {
   return (
     <div>
       <Header query={query} handleInputChange={handleInputChange}></Header>
-      <SiderBar handleChange={handleChange}></SiderBar>
-      <ButtonRecommend  ></ButtonRecommend>
-      <ViewCard></ViewCard>
+      <SiderBar data_product2={data_product2}></SiderBar>
+      <ButtonRecommend
+        data_product={data_product}
+        filterItems={filterItems}
+        setProductdb={setProductdb}
+      ></ButtonRecommend>
+      <ViewCard productdb={productdb}></ViewCard>
       {/* <Product result={result} /> */}
       {/* <Product/> */}
     </div>
