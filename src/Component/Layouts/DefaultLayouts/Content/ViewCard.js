@@ -3,7 +3,7 @@ import ViewDetails from "../Product/ViewDetails/ViewDetails";
 import toggleModal from "../Product/ViewDetails/ViewDetails"
 import { IoCloseCircle } from "react-icons/io5";
 
-function ViewCard({productdb}) {
+function ViewCard({ filetPrice }) {
   const [modal, setModal] = useState(false)
   // const [productdb, setProductdb] = useState([])
 
@@ -54,8 +54,8 @@ function ViewCard({productdb}) {
                   <div className="product-details">
                     <h2 className="detail-title">{detail.title}</h2>
                     <span className="container-price flex">
-                      <h3 className="detail-price red">{detail.price}</h3>
-                      <del className="detail-price price-sale mar_20px">{detail.salePrice}</del>
+                      <h3 className="detail-price red">{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(detail.price)}</h3>
+                      <del className="detail-price price-sale mar_20px">{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(detail.salePrice)}</del>
                     </span>
                     <div className="detail-des">{detail.description}</div>
                     <button className="add-cart" >Thêm vào giỏ hàng</button>
@@ -69,7 +69,7 @@ function ViewCard({productdb}) {
 
       )}
       {/* card-product */}
-      {productdb.map((name, index) =>
+      {filetPrice.map((name, index) =>
         <section key={index} className="card">
           <img className='card-img'
             src={name.img}
@@ -77,9 +77,9 @@ function ViewCard({productdb}) {
           <div className="card-details">
             <h3 className="card-title">{name.title}</h3>
             <div className="card-price">
-              <div className="main-price">{name.price}</div>
+              <div className="main-price">{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(name.price)}</div>
               <span className="card-sale">
-                <del className="price">{name.salePrice}</del>
+                <del className="price">{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(name.salePrice)}</del>
               </span>
             </div>
             <div className="card-description">

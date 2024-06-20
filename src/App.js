@@ -10,17 +10,18 @@ import dataProduct from './Component/Layouts/DefaultLayouts/Data/dataProduct'
 import ViewCard from './Component/Layouts/DefaultLayouts/Content/ViewCard';
 import { Button } from 'antd';
 import ButtonRecommend from './Component/Layouts/DefaultLayouts/Content/ButtonRecommend';
+import dataJS from './Component/Layouts/DefaultLayouts/Data/dataProduct'
 // import { Card } from 'antd';
 
 
 function App() {
-  const [selectedCategory, setSelectedCategory] = useState(null)
   const [query, setQuery] = useState("")
-
   // get data
   const [productdb, setProductdb] = useState([])
-  const [productdb2, setProductdb2] = useState([])
 
+  const [maxPrice, setMaxPrice] = useState(25000000)
+  const [minPrice, setMinPrice] = useState(0)
+  // const [productdb2, setProductdb2] = useState([])
 
   const getData = () => {
     fetch('http://localhost:8000/data')
@@ -29,28 +30,44 @@ function App() {
   }
 
 
+
   useEffect(() => {
     getData()
   }, [])
 
   const data_product = [...new Set(productdb.map((val) => val.category))]
+
+  const handleChange = (event) => {
+    const { value } = event.target
+    setMaxPrice(value)
+  }
+
+  const filetPrice = productdb.filter((item) => item.price >= minPrice && item.price <= maxPrice)
+  console.log(filetPrice)
+
   const filterItems = (cat) => {
     const newItems = productdb.filter((newVal) => newVal.category === cat)
     setProductdb(newItems)
   }
 
-
-  const getData2 = () => {
-    fetch('http://localhost:8000/data')
-      .then(response => response.json())
-      .then(res => setProductdb2(res))
+  //filter feature
+  const filterItems2 = (fe) => {
+    const newItems2 = dataJS.filter((newVal) => newVal.feature === fe)
+    setProductdb(newItems2)
   }
 
-  useEffect(() => {
-    getData2()
-  }, [])
+  // const getData2 = () => {
+  //   fetch('http://localhost:8000/data')
+  //     .then(response => response.json())
+  //     .then(res => setProductdb2(res))
+  // }
 
-  const data_product2 = [...new Set(productdb2.map((val) => val.feature))]
+  // useEffect(() => {
+  //   getData2()
+  // }, [])
+
+  const data_product2 = [...new Set(dataJS.map((val) => val.feature))]
+
   // const [productdb, setProductdb] = useState(dataProduct)
 
   // useEffect(() => {
@@ -120,13 +137,22 @@ function App() {
   return (
     <div>
       <Header></Header>
-      <SiderBar data_product2={data_product2}></SiderBar>
+      <SiderBar
+        data_product2={data_product2}
+        filterItems2={filterItems2}
+        setProductdb={setProductdb}
+        maxPrice={maxPrice}
+        minPrice={minPrice}
+        handleChange={handleChange}
+      ></SiderBar>
       <ButtonRecommend
         data_product={data_product}
         filterItems={filterItems}
         setProductdb={setProductdb}
       ></ButtonRecommend>
-      <ViewCard productdb={productdb}></ViewCard>
+      <ViewCard
+        filetPrice={filetPrice}
+      ></ViewCard>
       {/* <Product result={result} /> */}
       {/* <Product/> */}
     </div>
