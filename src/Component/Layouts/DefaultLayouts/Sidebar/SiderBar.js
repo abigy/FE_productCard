@@ -13,11 +13,11 @@ function SiderBar({data_product2,filterItems2, setProductdb, maxPrice,handleChan
         filterItems2={filterItems2}
         setProductdb={setProductdb}
         ></Features>
-        <Price 
+        {/* <Price 
         maxPrice={maxPrice} 
         minPrice={minPrice}
         handleChange={handleChange}
-        ></Price>
+        ></Price> */}
       </section>
     </div>
   )

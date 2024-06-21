@@ -21,7 +21,7 @@ function App() {
 
   const [maxPrice, setMaxPrice] = useState(25000000)
   const [minPrice, setMinPrice] = useState(0)
-  // const [productdb2, setProductdb2] = useState([])
+
 
   const getData = () => {
     fetch('http://localhost:8000/data')
@@ -29,24 +29,25 @@ function App() {
       .then(res => setProductdb(res))
   }
 
-
-
   useEffect(() => {
     getData()
   }, [])
 
-  const data_product = [...new Set(productdb.map((val) => val.category))]
+
+
+  const data_product = [...new Set(dataJS.map((val) => val.category))]
 
   const handleChange = (event) => {
     const { value } = event.target
     setMaxPrice(value)
   }
 
-  const filetPrice = productdb.filter((item) => item.price >= minPrice && item.price <= maxPrice)
-  console.log(filetPrice)
+  const filetPrice = productdb.filter(
+    (item) => item.price >= minPrice && item.price <= maxPrice)
+
 
   const filterItems = (cat) => {
-    const newItems = productdb.filter((newVal) => newVal.category === cat)
+    const newItems = dataJS.filter((newVal) => newVal.category === cat)
     setProductdb(newItems)
   }
 
@@ -151,7 +152,7 @@ function App() {
         setProductdb={setProductdb}
       ></ButtonRecommend>
       <ViewCard
-        filetPrice={filetPrice}
+        productdb={productdb}
       ></ViewCard>
       {/* <Product result={result} /> */}
       {/* <Product/> */}

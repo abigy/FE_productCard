@@ -3,7 +3,7 @@ import ViewDetails from "../Product/ViewDetails/ViewDetails";
 import toggleModal from "../Product/ViewDetails/ViewDetails"
 import { IoCloseCircle } from "react-icons/io5";
 
-function ViewCard({ filetPrice }) {
+function ViewCard({ productdb }) {
   const [modal, setModal] = useState(false)
   // const [productdb, setProductdb] = useState([])
 
@@ -69,7 +69,7 @@ function ViewCard({ filetPrice }) {
 
       )}
       {/* card-product */}
-      {filetPrice.map((name, index) =>
+      {productdb.map((name, index) =>
         <section key={index} className="card">
           <img className='card-img'
             src={name.img}
